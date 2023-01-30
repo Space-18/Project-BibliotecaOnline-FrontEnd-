@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<div style="padding: 2%">
+    <div class="col-md-23" style="margin-top: 3%">
+        <div class="row">
+                <div class="col-md-12">
+                    <table id="id_table" class="table table-striped table-bordered">
+                        <thead>
+                                <tr>
+                                        <th>Nombre</th>
+                                        <th></th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let item of allGuardado">
+                                        <td>{{ item.nombre }}</td>
+                                        <td><button (click)="delet(item.id)" type="button"
+                                            style="width: 90px"
+                                            class="btn btn-danger btn-sm">Eliminar</button></td>
+                                </tr>
+                        </tbody>
+                </table>
+                </div>
+        </div>
+</div>
+</div>

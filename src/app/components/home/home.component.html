@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+<div style="padding: 2%">
+    <div class="col-md-23" style="margin-top: 3%">
+        <div class="row">
+                <div class="col-md-12">
+                        <div class="content">
+                            <div *ngFor="let item of allLibro" style="display: inline-block; text-align: center;">
+                                <div class="col-md-6">
+                                        <p>{{ item.nombre }}</p>
+                                        <img src="{{ item.portada }}" width="160px" alt="{{ item.nombre }}">
+                                        <a [href]="item.url" target="_blank">Leer aquí</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+        </div>
+    </div>
+</div>
