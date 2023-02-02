@@ -1,0 +1,15 @@
+<div class="col-md-12">
+    <div class="content">
+        <div style="display: inline-block; text-align: center;">
+            <div class="col-md-6">
+                <div class="col-md-2">
+                    <button type="button" (click)="getAll()" class="btn btn-primary btn-sm"
+                            id="id_btn_filtrar" style="width: 150px">Listar Comentarios</button>
+                </div>
+                <div class="col-md-12" *ngFor="let item of allComentario">
+                    <p>{{item.texto}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

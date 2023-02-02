@@ -6,19 +6,21 @@ import { UserCredentials } from '../models/user.credentials';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { TokenDec } from '../models/token';
 
 @Injectable({
     providedIn: 'root'
   })
   export class AuthService {
 
-    constructor(private http: HttpClient,private router: Router) {
+    constructor(private http: HttpClient,private router: Router, /*private jwtService:JwtHelperService*/) {
         
     }
 
     public urlEndPoint: string = environment.apiUrl;
-    private _userCredential?: UserCredentials | any | undefined
-    private _token?: string | any | undefined
+    private _userCredential?: UserCredentials | any | undefined;
+    private _token?: string | any | undefined;
+    private objToken?: string | any | undefined;
 
     public get user(): UserCredentials{
         if(this._userCredential != null){
@@ -68,11 +70,39 @@ import swal from 'sweetalert2';
         sessionStorage.setItem('user', JSON.stringify(this._userCredential));
     }
 
-    obtenerDatosToken(accessToken: string): any {
+    obtenerDatosToken(accessToken: any): any {
         if (accessToken != null) {
           return JSON.parse(atob(accessToken.split(".")[1]));
         }
         return null;
+    }
+
+    public hasPermission():boolean{
+      try {
+        if(sessionStorage.getItem('token') != null || sessionStorage.getItem('token') != undefined){
+          var tokenSession = sessionStorage.getItem('token');
+          //var tokdecoss = this.jwtService.decodeToken(toeknSession);
+          var tokdecos = this.obtenerDatosToken(tokenSession)
+
+          if(tokdecos.admin == "si"){
+            return true;
+          } else{
+            return false;
+          }
+        }
+      } catch (error) {
+        console.info(error);
+        return false;
+      }
+      return false;
+    }
+
+    public isLoged():boolean{
+      this.objToken = sessionStorage.getItem('token');
+      if(this.objToken == null){
+        return false;
+      }
+      return true;
     }
 
     isAuthenticated(): boolean{

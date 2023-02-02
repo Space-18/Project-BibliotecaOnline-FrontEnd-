@@ -25,15 +25,15 @@ import swal from 'sweetalert2';
       }
 
     ngOnInit(): void {
-        if (this.authService.isAuthenticated()) {
-          this.router.navigateByUrl('/home');
-        } else {
-          this.router.navigateByUrl('/login');
-        }
+      this.authService.hasPermission();
+      if (this.authService.isAuthenticated() || this.authService.isLoged()) {
+        this.router.navigateByUrl('/home');
+      }  else {
+        this.router.navigateByUrl('/login');
+      }
       }
 
       async onLogin() {
-        console.log(this.user)
         if (this.user.email == null || this.user.password == null) {
           swal.fire('Error Login', 'Username o password vacías!', 'error');
           return;
@@ -41,17 +41,10 @@ import swal from 'sweetalert2';
         this.showLoading = true;
         await this.authService.login(this.user).subscribe(
           async response => {
-            let objPayload = JSON.parse(atob(response.token.split(".")[1]))
-            console.log("username-" + objPayload.iss)
-            console.log("tiempo de Inicio del Token-" + new Date(objPayload.iat * 1000))
-            console.log("tiempo de expiracion-" + new Date(objPayload.exp * 1000))
-            console.log("Id-" + objPayload.userId)
-            
+            let objPayload = JSON.parse(atob(response.token.split(".")[1]));
             this.authService.guardarToken(response.token);
             
             this.authService.guardarUsuario(this.user);
-            console.log("usuario>>>>>>>>>>>>>>>",this.user);
-            
     
             swal.fire('Login', `Hola ${this.user.email}, has iniciado sesión con éxito!`, 'success');
             this.showLoading = false;

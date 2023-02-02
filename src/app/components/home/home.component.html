@@ -5,14 +5,39 @@
                 <div class="col-md-12">
                         <div class="content">
                             <div *ngFor="let item of allLibro" style="display: inline-block; text-align: center;">
-                                <div class="col-md-6">
+                                <div class="col-md-6" (click)="getOne(item.id)" >
                                         <p>{{ item.nombre }}</p>
                                         <img src="{{ item.portada }}" width="160px" alt="{{ item.nombre }}">
                                         <a [href]="item.url" target="_blank">Leer aquí</a>
+                                        <div class="col-md-2">
+                                            <button type="button" (click)="viewPDF(item.url)" class="btn btn-primary btn-sm"
+                                                    id="id_btn_filtrar" style="width: 150px"
+                                                    data-toggle="modal"
+                                                    data-target="#idModalView">Leer</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div *ngIf="hasper">
+                            <h1>si tienes we</h1>
+                        </div>
                 </div>
         </div>
+    </div>
+
+    <div class="modal fade"  id="idModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 70%;">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5>View PDF</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="https://pjbackend.blob.core.windows.net/portadas/6e5bcb92-8851-4242-8a08-2b275ace2880.jpg" alt="">
+                    </div>
+            </div>
+    </div>
     </div>
 </div>

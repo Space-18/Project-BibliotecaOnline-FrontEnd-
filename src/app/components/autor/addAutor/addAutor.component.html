@@ -1,0 +1,66 @@
+<app-menu></app-menu>
+
+<div style="padding: 2%">
+    <form class="content" [formGroup]="formsRegistra">
+        <div class="submit-form">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3%">
+                <div class="col-md-6 position-relative" formGroupName="Registrar">
+                    <label for="regNames">Nombres:</label>
+                    <input type="text" class="form-control" [(ngModel)]="autor.nombres" id="regNames" name="nombres"
+                        formControlName="validaNombre" required />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaNombre.errors" class="invalid">
+                        <ul>
+                            <li>El Nombre es obligatorio</li>
+                            <li>El Nombre es de 4 a 45 caracteres</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative" formGroupName="Registrar">
+                    <label for="regSurname">Apellidos:</label>
+                    <input type="text" class="form-control" id="regSurname" name="apellidos"
+                        formControlName="validaApellido" [(ngModel)]="autor.apellidos" required />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaApellido.errors" class="invalid">
+                        <ul>
+                            <li>El Apellido es obligatorio</li>
+                            <li>El Apellido es de 4 a 45 caracteres</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 position-relative" formGroupName="Registrar">
+                    <label for="regEdad">Edad:</label>
+                    <input type="text" class="form-control" id="regEdad" name="edad" formControlName="validaEdad"
+                        [(ngModel)]="autor.edad" minLength="1" maxLength="3" />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaEdad.errors" class="invalid">
+                        <ul>
+                            <li>La edad es obligatorio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative" formGroupName="Registrar">
+                    <label for="regnacionalidad">Nacionalidad:</label>
+                    <input type="text" class="form-control" formControlName="validaNacionalidad"
+                         id="regnacionalidad" name="nacionalidad"
+                        [(ngModel)]="autor.nacionalidad" />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaNacionalidad.errors" class="invalid">
+                        <ul>
+                            <li>La Nacionalidad es obligatorio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-secondary btn-sm" style="width: 100px;">Limpiar</button>
+                <div class="form-group text-center">
+                    <div class="col-lg-12">
+                        <button (click)="save()" id="id_reg_registra" class="btn btn-success btn-sm "
+                            style="width: 100px;">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

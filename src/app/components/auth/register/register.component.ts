@@ -27,11 +27,11 @@ import { LoginComponent } from '../login/login.component';
     ){ this.user= new UserCredentials}
 
     ngOnInit(): void {
-        if (this.authService.isAuthenticated()) {
-            this.router.navigateByUrl('/home');
-          } else{
-            this.router.navigateByUrl('/register');
-          }
+      if (this.authService.isAuthenticated() || this.authService.isLoged()) {
+        this.router.navigateByUrl('/home');
+      }  else {
+        this.router.navigateByUrl('/register');
+      }
     }
 
     async onRegister(){
