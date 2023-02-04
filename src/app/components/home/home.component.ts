@@ -3,6 +3,7 @@ import { AllLibro } from "src/app/models/all.libro";
 import { Router } from '@angular/router';
 import { LibroService } from "src/app/services/libro.service";
 import { AuthService } from "src/app/services/auth.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     selector: 'app-home',
@@ -13,7 +14,6 @@ export class HomeComponent implements OnInit{
 
     hasper = false;
     allLibro = new Array<AllLibro>();
-    fileURL = ""; 
 
     constructor(private readonly libroService:LibroService,private router: Router, private readonly authService:AuthService) { }
 
@@ -33,15 +33,11 @@ export class HomeComponent implements OnInit{
         });
     }
 
-    viewPDF(allLibro: any){
-
-        const blobTest = new Blob([allLibro], { type: 'application/pdf' });
-        const fileURL = URL.createObjectURL(blobTest);
-        console.info(fileURL);
-        this.fileURL = fileURL;
-    }
-
     getOne(id?:number){
         this.router.navigateByUrl('/libro/'+id);
+    }
+
+    agregar(){
+        this.router.navigateByUrl('/libros/add');
     }
 }

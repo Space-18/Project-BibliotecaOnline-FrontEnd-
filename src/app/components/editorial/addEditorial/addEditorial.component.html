@@ -1,0 +1,55 @@
+<app-menu></app-menu>
+
+<div style="padding: 2%">
+    <form class="content" [formGroup]="formsRegistra">
+        <div class="submit-form">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3%">
+                <div class="col-md-6 position-relative" formGroupName="Registrar">
+                    <label for="regNames">Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="editorial.nombre" id="regNames" name="nombres"
+                        formControlName="validaNombre" required />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaNombre.errors" class="invalid">
+                        <ul>
+                            <li>El Nombre es obligatorio</li>
+                            <li>El Nombre es de 4 a 45 caracteres</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 position-relative" formGroupName="Registrar">
+                    <label for="regSurname">Dirección:</label>
+                    <input type="text" class="form-control" id="regSurname" name="apellidos"
+                        formControlName="validaDireccion" [(ngModel)]="editorial.direccion" required />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaDireccion.errors" class="invalid">
+                        <ul>
+                            <li>La Dirección es obligatoria</li>
+                            <li>Ingrese una Dirección válida</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 position-relative" formGroupName="Registrar">
+                    <label for="regEdad">Teléfono:</label>
+                    <input type="text" class="form-control" id="regEdad" name="edad" formControlName="validaTelefono"
+                        [(ngModel)]="editorial.telefono" minLength="9" maxLength="9" />
+                    <div *ngIf="submitted && formsRegistra.controls.Registrar.controls.validaTelefono.errors" class="invalid">
+                        <ul>
+                            <li>El teléfono es obligatorio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-secondary btn-sm" style="width: 100px;">Limpiar</button>
+                <div class="form-group text-center">
+                    <div class="col-lg-12">
+                        <button (click)="save()" id="id_reg_registra" class="btn btn-success btn-sm "
+                            style="width: 100px;">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

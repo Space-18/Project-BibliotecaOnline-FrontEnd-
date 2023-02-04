@@ -1,5 +1,5 @@
 export class AllComentario{
     id?:number;
-    time?:Date;
+    time?:string;
     texto?:string;
 }

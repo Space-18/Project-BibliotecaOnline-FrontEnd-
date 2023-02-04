@@ -10,6 +10,8 @@ import { LibroWithComponent } from './components/libro/libroWith/librowith.compo
 import { AddAutorComponent } from './components/autor/addAutor/addAutor.component';
 import Swal from 'sweetalert2';
 import { ErrorComponent } from './components/error/error.component';
+import { AddEditorialComponent } from './components/editorial/addEditorial/addEditorial.component';
+import { AddLibroComponent } from './components/libro/addLibro/addLibro.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path:'editoriales',component:EditorialComponent},
   {path:'libro/:id',component:LibroWithComponent},
   {path:'autor/add',component:AddAutorComponent},
+  {path:'editorial/add',component:AddEditorialComponent},
+  {path:'libros/add',component:AddLibroComponent},
   {path:'error',component:ErrorComponent},
     {path:'',redirectTo:'home',pathMatch:'full'},
     {path:'home',loadChildren:() => import('./components/home/home.component').then(m=>m.HomeComponent)},

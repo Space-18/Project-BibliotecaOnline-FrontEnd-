@@ -1,5 +1,9 @@
 <app-menu></app-menu>
 <div style="padding: 2%">
+        <div class="col-md-2" *ngIf="hasper">
+                <button type="button" (click)="agregar()" class="btn btn-primary btn-sm"
+                        id="id_btn_filtrar" style="width: 150px">Agregar</button>
+            </div>
     <div class="col-md-23" style="margin-top: 3%">
         <div class="row">
                 <div class="col-md-12">
@@ -7,11 +11,17 @@
                         <thead>
                                 <tr>
                                         <th>Nombre</th>
+                                        <th *ngIf="hasper"></th>
                                 </tr>
                         </thead>
                         <tbody>
                                 <tr *ngFor="let item of allEditorial">
                                         <td>{{ item.nombre }}</td>
+                                        <td *ngIf="hasper">
+                                                <button (click)="delet(item.id)" type="button"
+                                            style="width: 90px"
+                                            class="btn btn-danger btn-sm">Eliminar</button>
+                                        </td>
                                 </tr>
                         </tbody>
                 </table>

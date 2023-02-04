@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { LibroWithAuEd } from "src/app/models/libro.withAE";
 import { AuthService } from "src/app/services/auth.service";
@@ -13,9 +14,10 @@ import Swal from "sweetalert2";
 export class LibroWithComponent implements OnInit{
     public libroWith = new LibroWithAuEd();
     private urlTree: any;
+    fileURL:any;
     hasper = false;
 
-    constructor(private readonly libroService:LibroService, private router:Router, private authService:AuthService){
+    constructor(private readonly libroService:LibroService, private router:Router, private authService:AuthService, private sanitizer:DomSanitizer){
         this.urlTree = this.router.parseUrl(this.router.url);
     }
 
@@ -46,4 +48,7 @@ export class LibroWithComponent implements OnInit{
         }
     }
 
+    viewPDF(allLibro: any){
+        this.fileURL = this.sanitizer.bypassSecurityTrustResourceUrl(allLibro);
+    }
 }

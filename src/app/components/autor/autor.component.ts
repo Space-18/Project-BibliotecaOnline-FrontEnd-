@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AllAutor } from "src/app/models/all.autor";
 import { AuthService } from "src/app/services/auth.service";
 import { AutorService } from "src/app/services/autor.service";
+import Swal from "sweetalert2";
 
 @Component({
     selector: 'app-autor',
@@ -33,6 +34,28 @@ export class AutorComponent implements OnInit{
 
     agregar(){
         this.router.navigateByUrl('/autor/add');
+    }
+
+    delet(id?:number){
+        Swal.fire({
+            title: '¿Desea eliminar?',
+            text: "Los cambios no se van a revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar.',
+            cancelButtonText: 'No, cancelar'
+          }).then((result) => {
+        if (result.isConfirmed) {
+              this.autorService.delete(id).subscribe(
+                x => {
+                    Swal.fire('Mensaje',"Eliminado",'success');
+                    this.getAll();
+                }
+              )
+            }
+        });
     }
 
 }

@@ -21,6 +21,8 @@ import { ComentarioComponent } from './components/comentario/comentario.componen
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AddAutorComponent } from './components/autor/addAutor/addAutor.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AddEditorialComponent } from './components/editorial/addEditorial/addEditorial.component';
+import { AddLibroComponent } from './components/libro/addLibro/addLibro.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ErrorComponent } from './components/error/error.component';
     LibroWithComponent,
     ComentarioComponent,
     AddAutorComponent,
-    ErrorComponent
+    ErrorComponent,
+    AddEditorialComponent,
+    AddLibroComponent
   ],
   imports: [
     BrowserModule,

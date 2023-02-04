@@ -13,6 +13,7 @@
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
                                         <th>Nacionalidad</th>
+                                        <th *ngIf="hasper"></th>
                                 </tr>
                         </thead>
                         <tbody>
@@ -20,6 +21,11 @@
                                         <td>{{ item.nombres }}</td>
                                         <td>{{ item.apellidos }}</td>
                                         <td>{{ item.nacionalidad }}</td>
+                                        <td *ngIf="hasper">
+                                                <button (click)="delet(item.id)" type="button"
+                                            style="width: 90px"
+                                            class="btn btn-danger btn-sm">Eliminar</button>
+                                        </td>
                                 </tr>
                         </tbody>
                 </table>

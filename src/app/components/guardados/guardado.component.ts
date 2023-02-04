@@ -22,6 +22,10 @@ export class GuardadoComponent implements OnInit{
         this.guardadoService.getAll().subscribe(allGuardado=>{this.allGuardado = allGuardado});
     }
 
+    agregar(){
+        
+    }
+
     delet(id?:number){
         Swal.fire({
             title: '¿Desea eliminar?',
