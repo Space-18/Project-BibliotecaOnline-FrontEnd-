@@ -13,8 +13,7 @@ import { AddLibro } from '../models/add.libro';
 
     public urlEndPoint: string = environment.apiUrl + "/api";
     private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    private httpHeadersP = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    private httpHeadersQ = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
+    private httpHeadersF = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
 
     constructor(private http: HttpClient,private authService: AuthService) {
     }
@@ -41,12 +40,7 @@ import { AddLibro } from '../models/add.libro';
         console.log(element);
       });
 
-      try {
-        return this.http.post(`${this.urlEndPoint}/libro`, formData, {headers:this.authService.agregarAuthorizationHeader(this.httpHeadersP)})
-      } catch (error) {
-        console.info("Error al crear.");
-        return this.http.post(`${this.urlEndPoint}/libro`, formData, {headers:this.authService.agregarAuthorizationHeader(this.httpHeadersQ)})
-      }
+        return this.http.post(`${this.urlEndPoint}/libro`, formData, {headers:this.authService.agregarAuthorizationHeader(this.httpHeadersF)})
     }
 
   }

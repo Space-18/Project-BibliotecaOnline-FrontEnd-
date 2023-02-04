@@ -69,7 +69,7 @@ export class AddLibroComponent implements OnInit{
 
     addPortada(portada:any){
         this.portada = portada.target.files[0];
-        console.log(this.portada);
+        //console.log(this.portada);
         if (this.portada.type.indexOf('image') < 0) {
         Swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
         }else{
@@ -80,7 +80,7 @@ export class AddLibroComponent implements OnInit{
 
     addUrl(url:any){
         this.url = url.target.files[0];
-        console.log(this.url);
+        //console.log(this.url);
         if (this.url.type.indexOf('application/pdf') < 0) {
         Swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo pdf', 'error');
         }else{
@@ -97,18 +97,19 @@ export class AddLibroComponent implements OnInit{
             }
           this.submitted = false;
 
-          console.info(this.libro.nombre + " --- "+ this.libro.portada + " --- " + this.libro.url + " --- " + this.libro.autorId + " --- " + this.libro.editorialId)
+          //console.info(this.libro.nombre + " --- "+ this.libro.portada + " --- " + this.libro.url + " --- " + this.libro.autorId + " --- " + this.libro.editorialId)
 
           this.load = true;
 
-          console.log("----------------------------"+this.portada);
-          console.log("***************************"+this.url)
+          //console.log("----------------------------"+this.portada);
+          //console.log("***************************"+this.url)
 
         this.libroService.save(this.libro).subscribe(libro =>{
             Swal.fire('Éxito','Libro '+ libro.nombre +' agregado correctamente','success');
             libro = new AddLibro();
           },err =>{
-            Swal.fire('Error','Error al crearel libro','error');
+            Swal.fire('Error','Error al crear el libro','error');
+            console.log(err);
             this.load = false;
           })
     }
